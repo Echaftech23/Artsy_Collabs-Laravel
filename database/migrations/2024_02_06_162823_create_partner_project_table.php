@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('partner_project', function (Blueprint $table) {
-            $table->bigInteger('partner_id')->unsigned();
-            $table->bigInteger('project_id')->unsigned();
             $table->foreignId('partner_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('project_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

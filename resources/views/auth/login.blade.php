@@ -29,26 +29,23 @@
                     <h3 class="pt-4 text-2xl text-center">Welcome Back!</h3>
                     <form action="{{ route('login.action') }}" method="POST" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                         @csrf
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-                                Username
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                Email
                             </label>
-                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                            <input name="email" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" id="email" type="email" placeholder="Email" />
+                            @error('email')
+                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
                                 Password
                             </label>
-                            <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" id="password" type="password" name="password" placeholder="******************" />
+                            @error('password')
+                            <span class="text-sm text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <input class="mr-2 leading-tight" type="checkbox" id="checkbox_id" />

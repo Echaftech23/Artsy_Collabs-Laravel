@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLoginRequest;
+use App\Http\Requests\StoreRegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,21 +18,16 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
-    public function registerSave(Request $request)
+    public function registerSave(StoreRegisterRequest $request)
     {
-        Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
-        ])->validate();
-
-        User::create([
-            'name' => $request->name,
+        $user = User::create([
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'level' => 'Admin'
         ]);
 
+        $user->roles()->attach([1]);
         return redirect()->route('login');
     }
 
@@ -39,12 +36,8 @@ class AuthController extends Controller
         return view('auth/login');
     }
 
-    public function loginAction(Request $request)
+    public function loginAction(StoreLoginRequest $request)
     {
-        Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ])->validate();
 
         if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             throw ValidationException::withMessages([
@@ -57,9 +50,9 @@ class AuthController extends Controller
         $user = Auth::user();
 
         // Check the user's role and redirect based on the role
-        if ($user && $user->role->name === 'admin') {
+        if ($user && $user->roles->first()->name=== 'admin') {
             return redirect()->route('dashboard');
-        } elseif ($user && $user->role->name === 'user') {
+        } elseif ($user && $user->role->name === 'artist') {
             return redirect('/views');
         }
 

@@ -29,40 +29,41 @@
                 <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
                     <h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
                     <form action="{{ route('register.save') }}" method="POST" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                        @csrf
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
                                 Username
                             </label>
-                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('username')is-invalid @enderror" id="username" type="text" placeholder="Username" />
+                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror" name="username" id="username" type="text" placeholder="Username" />
                             @error('username')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                            <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                 Email
                             </label>
-                            <input name="email" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('email')is-invalid @enderror" id="email" type="email" placeholder="Email" />
+                            <input name="email" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" id="email" type="email" placeholder="Email" />
                             @error('email')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                            <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
                                 Password
                             </label>
-                            <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('password')is-invalid @enderror" id="password" type="password" placeholder="******************" />
+                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" id="password" type="password" name="password" placeholder="******************" />
                             @error('password')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                            <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
                                 Confirm Password
                             </label>
-                            <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('c_password')is-invalid @enderror" id="c_password" type="password" placeholder="******************" />
-                            @error('c_password')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                            <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('password_confirmation') border-red-500 @enderror" id="password_confirmation" type="password" name="password_confirmation" placeholder="******************" />
+                            @error('password_confirmation')
+                            <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-4 text-center">
