@@ -93,7 +93,7 @@
 
                         <!-- Content -->
                         <div class="c4ijw">
-                            <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">Good afternoon, Acme Inc. 👋</h1>
+                            <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr ci4cg">Good afternoon, {{ auth()->user()->username }}. 👋</h1>
                             <p class="c6jet">Here is what’s happening with your projects today:</p>
                         </div>
 

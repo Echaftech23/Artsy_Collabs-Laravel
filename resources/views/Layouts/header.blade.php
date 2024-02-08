@@ -172,7 +172,7 @@
                     </button>
                     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded creyy ct1ew cetne csmh2 c8gb2 c28cu cke32 c8407 cox8h c5xk8" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="c5mjj coq4n ch8aq ccio3" x-transition:enter-start="opacity-0 c3pue" x-transition:enter-end="cqsra cfwq4" x-transition:leave="c5mjj coq4n ch8aq" x-transition:leave-start="cqsra" x-transition:leave-end="opacity-0" x-cloak="">
                         <div class="border-slate-200 dark:border-slate-700 cz4zt cf6al ci4cg cjm6w c622v">
-                            <div class="text-slate-800 dark:text-slate-100 cw92y">Acme Inc.</div>
+                            <div class="text-slate-800 dark:text-slate-100 cw92y">{{ auth()->user()->username }}</div>
                             <div class="text-slate-500 dark:text-slate-400 c0qeg clmtf">Administrator</div>
                         </div>
                         <ul>
@@ -180,7 +180,7 @@
                                 <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="settings.html" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
                             </li>
                             <li>
-                                <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="signin.html" @click="open = false" @focus="open = true" @focusout="open = false">Sign Out</a>
+                                <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="{{ route('login') }}" @click="open = false" @focus="open = true" @focusout="open = false">Sign Out</a>
                             </li>
                         </ul>
                     </div>

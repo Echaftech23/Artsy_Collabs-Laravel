@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRegisterRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +17,7 @@ class UserController extends Controller
     {
         $user = User::orderBy('created_at', 'DESC')->get();
 
-        return view('users.index', compact('user'));
+        return view('admin.users.index', compact('user'));
     }
 
     /**
@@ -22,16 +25,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRegisterRequest $request)
     {
-        User::create($request->all());
 
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone
+        ]);
+
+        $roleId = $request->input('role_id');
+        $user->roles()->attach($roleId);
         return redirect()->route('users')->with('success', 'User added successfully');
     }
 
@@ -42,7 +53,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -52,7 +63,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -63,6 +74,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->update($request->all());
+        $user->roles()->sync($request->input('role_id'));
 
         return redirect()->route('users')->with('success', 'User updated successfully');
     }

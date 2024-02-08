@@ -39,13 +39,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     })->name('dashboard');
 
     Route::controller(UserController::class)->prefix('users')->group(function () {
-        Route::get('', 'index')->name('users');
-        Route::get('create', 'create')->name('users.create');
-        Route::post('store', 'store')->name('users.store');
-        Route::get('show/{id}', 'show')->name('users.show');
-        Route::get('edit/{id}', 'edit')->name('users.edit');
-        Route::put('edit/{id}', 'update')->name('users.update');
-        Route::delete('destroy/{id}', 'destroy')->name('users.destroy');
+        Route::get('', 'index')->name('admin.users');
+        Route::get('create', 'create')->name('admin.users.create');
+        Route::post('store', 'store')->name('admin.users.store');
+        Route::get('show/{id}', 'show')->name('admin.users.show');
+        Route::get('edit/{id}', 'edit')->name('admin.users.edit');
+        Route::put('edit/{id}', 'update')->name('admin.users.update');
+        Route::delete('destroy/{id}', 'destroy')->name('admin.users.destroy');
     });
 
     Route::controller(ProjectController::class)->prefix('projects')->group(function () {
