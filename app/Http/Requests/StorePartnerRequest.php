@@ -11,7 +11,7 @@ class StorePartnerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StorePartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'logo' => 'required',
+            'name' => 'required',
+            'expertise' => 'required'
         ];
     }
 }

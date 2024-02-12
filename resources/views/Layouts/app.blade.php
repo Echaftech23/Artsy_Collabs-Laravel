@@ -16,7 +16,7 @@
             document.querySelector('html').classList.add('dark');
             document.querySelector('html').style.colorScheme = 'dark';
         }
-    </script>
+        </script>
 
     <script defer data-domain='preview.cruip.com,rollup.cruip.com' src='../../plausible.cruip.com/js/script.js'></script>
 </head>

@@ -184,8 +184,8 @@ button,
 :disabled {
     cursor: default;
 }
-mb-4{
-    
+mb-4 {
+    margin-bottom: 200px;
 }
 img,
 svg,
@@ -1962,6 +1962,9 @@ span.flatpickr-weekday {
 .cewy4 {
     max-width: 96rem;
 }
+.cewyrr {
+    width: 30rem;
+}
 .c0nbw {
     max-width: 32rem;
 }
@@ -2808,7 +2811,7 @@ span.flatpickr-weekday {
     -o-object-position: center;
     object-position: center;
 }
-.c543k {
+.p-0 {
     padding: 0px;
 }
 .cgk03 {

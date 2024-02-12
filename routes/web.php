@@ -59,13 +59,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     Route::controller(PartnerController::class)->prefix('partners')->group(function () {
-        Route::get('', 'index')->name('partners');
-        Route::get('create', 'create')->name('partners.create');
-        Route::post('store', 'store')->name('partners.store');
-        Route::get('show/{id}', 'show')->name('partners.show');
-        Route::get('edit/{id}', 'edit')->name('partners.edit');
-        Route::put('edit/{id}', 'update')->name('partners.update');
-        Route::delete('destroy/{id}', 'destroy')->name('partners.destroy');
+        Route::get('', 'index')->name('admin.partners');
+        Route::get('create', 'create')->name('admin.partners.create');
+        Route::post('store', 'store')->name('admin.partners.store');
+        Route::get('show/{id}', 'show')->name('admin.partners.show');
+        Route::get('edit/{id}', 'edit')->name('admin.partners.edit');
+        Route::put('edit/{id}', 'update')->name('admin.partners.update');
+        Route::delete('destroy/{id}', 'destroy')->name('admin.partners.destroy');
     });
 
     Route::controller(RequestController::class)->prefix('requsets')->group(function () {

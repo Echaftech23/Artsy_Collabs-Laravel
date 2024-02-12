@@ -8,7 +8,7 @@
         <!-- Left: Title -->
         <div class="clxmc c958j">
             <h1 class="text-slate-800 dark:text-slate-100 font-bold cy709 cjefr">
-                List Users ✨
+                List Partners ✨
             </h1>
         </div>
 
@@ -17,7 +17,7 @@
             <!-- Search form -->
             <form class="c4ijw">
                 <label for="action-search" class="cbl3h">Search</label>
-                <input id="action-search" class="bg-white dark:bg-slate-800 c03gb ctmd2" type="search" placeholder="Search by User ID" />
+                <input id="action-search" class="bg-white dark:bg-slate-800 c03gb ctmd2" type="search" placeholder="Search by Partner ID" />
                 <button class="cozyg csmh2 c1u8w c2djl" type="submit" aria-label="Search">
                     <svg class="ml-3 mr-2 c1bvt cc44c ciz4v czgoy c3wll c7n6y cgmrc cm474" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z">
@@ -29,49 +29,20 @@
             </form>
 
             <!-- Create invoice button -->
-            <a href="{{ route('users.create') }}" class="btn cfeqx cf1ce ceqwg">
+            <a href="{{ route('partners.create') }}" class="btn cfeqx cf1ce ceqwg">
                 <svg class="c3wll c8si1 c7n6y cgmrc cm474" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z">
                     </path>
                 </svg>
-                <button class="hidden cmh5t c9o7o">Add User</button>
+                <button class="hidden cmh5t c9o7o">Add Partner</button>
             </a>
         </div>
     </div>
 
     <!-- More actions -->
     <div class="cyqq9 cxbdy clk9r cg5st">
-        <!-- Left side -->
-        <div class="clxmc c958j">
-            <ul class="flex flex-wrap -m-1">
-                <li class="m-1">
-                    <button class="inline-flex items-center justify-center text-sm rounded-full border cyj9a cf1ce crp72 cw92y cgpmj ceqwg cyyn9 cl0q9 cjm6w cynm4">
-                        All <span class="text-indigo-200 csib2">67</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="inline-flex items-center justify-center text-sm rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 cjm6w cynm4">
-                        Admin <span class="ciz4v czgoy csib2">4</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="inline-flex items-center justify-center text-sm rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 cjm6w cynm4">
-                        Artist <span class="ciz4v czgoy csib2">34</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="inline-flex items-center justify-center text-sm rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 c46uo cm7vt crp72 cw92y cgpmj cyyn9 cl0q9 cjm6w cynm4">
-                        Parnter <span class="ciz4v czgoy csib2">19</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-
         <!-- Right side -->
         <div class="cnt8v cexh7 cuh4n cy6ju ck4mf c5va1">
-            <!-- Delete button -->
-
-
             <!-- Dropdown -->
             <div class="c4ijw" x-data="{ open: false, selected: 2 }">
                 <button class="btn bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 c46uo cn6r0 cm7vt cxc4n ch1ih cmgwo c28cu" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
@@ -139,9 +110,8 @@
             </div>
         </div>
     </div>
-
     @if(Session::has('success'))
-         <!-- Start -->
+        <!-- Start -->
         <div x-show="open" x-data="{ open: true }" role="alert" class="cg5st">
             <div class="inline-flex rounded-sm text-sm ck3g6 ceqwg ckj5k c9r0z cfnh0">
                 <div class="flex cmgwo cxbmt c3ff8">
@@ -166,7 +136,7 @@
     <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cetne ce97l">
         <header class="cx95x ctysv">
             <h2 class="text-slate-800 dark:text-slate-100 cqosy">
-                Users <span class="ciz4v czgoy cw92y">67</span>
+                Partners <span class="ciz4v czgoy cw92y">67</span>
             </h2>
         </header>
         <div x-data="handleSelect">
@@ -188,19 +158,13 @@
                                 <div class="cqosy cojuf">#</div>
                             </th>
                             <th class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cqosy cojuf">Image</div>
+                                <div class="cqosy cojuf">Logo</div>
                             </th>
                             <th class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cqosy cojuf">Username</div>
+                                <div class="cqosy cojuf">Name</div>
                             </th>
                             <th class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cqosy cojuf">Email</div>
-                            </th>
-                            <th class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cqosy cojuf">Phone</div>
-                            </th>
-                            <th class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cqosy cojuf">Type</div>
+                                <div class="cqosy cojuf">Expertise</div>
                             </th>
                             <th class="c626f ccr3m cwqwq ciamg c8o14">
                                 <div class="cqosy cojuf">Created at</div>
@@ -212,8 +176,8 @@
                     </thead>
                     <!-- Table body -->
                     <tbody class="text-sm ci5zp ccc5r cxw08">
-                        @if($user->count() > 0)
-                        @foreach($user as $ur)
+                        @if($partners->count() > 0)
+                        @foreach($partners as $partner)
                         <!-- Row -->
                         <tr>
                             <td class="c626f ccr3m cwqwq c63v7 ciamg c8o14">
@@ -228,33 +192,20 @@
                                 <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $loop->iteration }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cefw2 cw92y"><img class="rounded-full chmgx c6dxj" src="{{ asset('img/user-36-02.jpg') }}" width="32" height="32" alt="User"></div>
+                                <div class="cefw2 cw92y"><img class="rounded-full chmgx c6dxj" src="{{ asset('img/group-avatar-04.png') }}" width="32" height="32" alt="User"></div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $ur->username }}</div>
+                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $partner->name }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cw92y">{{ $ur->email }}</div>
+                                <div class="cw92y">{{ Str::limit($partner->expertise, 90) }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div>{{ ($ur->phone ? $ur->phone : '-') }}</div>
-                            </td>
-                            <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="inline-flex rounded-full
-                                    @if($ur->roles->first()->name === 'partner') cxdv7 ctksn ckrqz ccfka
-                                    @elseif($ur->roles->first()->name === 'artist') cq2p6 cdbjv c6rpu cwvsn
-                                    @elseif($ur->roles->first()->name === 'admin') crfrs cna26 c6tg6 cgaep
-                                    @endif cob4g cw92y csq8i cxcbl">
-                                    {{ $ur->roles->first()->name }}
-                                </div>
-
-                            </td>
-                            <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div>{{ $ur->created_at->format('d/m/Y') }}</div>
+                                <div>{{ $partner->created_at->format('d/m/Y') }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq c63v7 ciamg c8o14">
                                 <div class="cisva flex items-center">
-                                    <a href="{{ route('users.show', $ur->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
+                                    <a href="{{ route('partners.show', $partner->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
                                         <span class="cbl3h">Details</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3367d1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10" />
@@ -262,13 +213,13 @@
                                             <line x1="12" y1="8" x2="12" y2="8" />
                                         </svg>
                                     </a>
-                                    <a href="{{ route('users.edit', $ur->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
+                                    <a href="{{ route('partners.edit', $partner->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
                                         <span class="cbl3h">Edit</span>
                                         <svg class="c3wll chmgx c6dxj" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </a>
-                                    <form action="{{ route('users.destroy', $ur->id) }}" method="POST" class="rounded-full cvu65 c6tg6" onsubmit="return confirm('Are You sure You want To Delete This User?')">
+                                    <form action="{{ route('partners.destroy', $partner->id) }}" method="POST" class="rounded-full cvu65 c6tg6" onsubmit="return confirm('Are You sure You want To Delete This Partner?')">
                                         @csrf
                                         @method('DELETE')
                                         <span class="cbl3h">Delete</span>
@@ -286,7 +237,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td class="text-center" colspan="5">User not found</td>
+                            <td class="text-center" colspan="5">Partner not found</td>
                         </tr>
                         @endif
                     </tbody>
