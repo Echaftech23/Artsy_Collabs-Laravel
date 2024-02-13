@@ -15,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('created_at', 'DESC')->get();
+        $projects = Project::latest()->get();
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -26,7 +26,7 @@ class ProjectController extends Controller
     public function create()
     {
         $partners = Partner::orderBy('created_at', 'DESC')->get();
-        
+
         $artists = User::whereHas('roles', function ($query) {
             $query->where('name', 'artist');
         })->orderBy('created_at', 'DESC')->get();
@@ -39,14 +39,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $projects = Project::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'phone' => $request->phone
-        ]);
+        $project = Project::create($request->validated());
 
-        $roleId = $request->input('role_id');
-        $projects->roles()->attach($roleId);
+        $project->users()->sync($request->input('user_id', []));
+        $project->partners()->sync($request->input('partner_id', []));
+
         return redirect()->route('projects')->with('success', 'Project added successfully');
     }
 
@@ -55,32 +52,56 @@ class ProjectController extends Controller
      */
     public function show(int $id)
     {
-        $user = Project::findOrFail($id);
+        $project = Project::findOrFail($id);
 
-        return view('admin.users.show', compact('user'));
+        $partners = Partner::orderBy('created_at', 'DESC')->get();
+
+        $artists = User::whereHas('roles', function ($query) {
+            $query->where('name', 'artist');
+        })->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.projects.show', compact('project', 'partners', 'artists'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $partner)
+    public function edit(int $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $partners = Partner::orderBy('created_at', 'DESC')->get();
+
+        $artists = User::whereHas('roles', function ($query) {
+            $query->where('name', 'artist');
+        })->orderBy('created_at', 'DESC')->get();
+
+        return view('admin.projects.edit', compact('project', 'partners', 'artists'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $partner)
+    public function update(UpdateProjectRequest $request, int $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $project->update($request->validated());
+        $project->users()->sync($request->user_id);
+        $project->partners()->sync($request->partner_id);
+
+        return redirect()->route('projects')->with('success', 'Project updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $partner)
+    public function destroy(int $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $project->delete();
+
+        return redirect()->route('admin.projects')->with('success', 'Project deleted successfully');
     }
 }

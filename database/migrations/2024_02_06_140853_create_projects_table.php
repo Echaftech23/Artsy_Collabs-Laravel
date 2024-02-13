@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->string('image')->nullable();
             $table->decimal('budget');
             $table->timestamps();

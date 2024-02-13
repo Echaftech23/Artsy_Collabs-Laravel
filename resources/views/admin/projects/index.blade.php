@@ -166,7 +166,7 @@
     <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cetne ce97l">
         <header class="cx95x ctysv">
             <h2 class="text-slate-800 dark:text-slate-100 cqosy">
-                Users <span class="ciz4v czgoy cw92y">67</span>
+                Projects <span class="ciz4v czgoy cw92y">67</span>
             </h2>
         </header>
         <div x-data="handleSelect">
@@ -228,33 +228,39 @@
                                 <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $loop->iteration }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cefw2 cw92y"><img class="rounded-full chmgx c6dxj" src="{{ asset('img/user-36-02.jpg') }}" width="32" height="32" alt="User"></div>
+                                <div class="cefw2 cw92y"><img class="rounded-full chmgx c6dxj" src="{{ asset('img/applications-image-03.jpg') }}" width="32" height="32" alt="User"></div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $projects->username }}</div>
+                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $project->name }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cw92y">{{ $projects->email }}</div>
+                                <div class="cw92y">{{ Str::limit($project->description, 60) }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div>{{ ($projects->phone ? $projects->phone : '-') }}</div>
+                                <div>{{ ($project->budget ? $project->budget : '-') }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
                                 <div class="inline-flex rounded-full
-                                    @if($projects->roles->first()->name === 'partner') cxdv7 ctksn ckrqz ccfka
-                                    @elseif($projects->roles->first()->name === 'artist') cq2p6 cdbjv c6rpu cwvsn
-                                    @elseif($projects->roles->first()->name === 'admin') crfrs cna26 c6tg6 cgaep
-                                    @endif cob4g cw92y csq8i cxcbl">
-                                    {{ $projects->roles->first()->name }}
+                                    @switch($project->status)
+                                        @case(0) cxdv7 ctksn ckrqz ccfka @break
+                                        @case(1) cq2p6 cdbjv c6rpu cwvsn @break
+                                        @case(2) crfrs cna26 c6tg6 cgaep @break
+                                    @endswitch
+                                    cob4g cw92y csq8i cxcbl">
+                                    @switch($project->status)
+                                        @case(0) Pending @break
+                                        @case(1) In Progress @break
+                                        @case(2) Completed @break
+                                    @endswitch
                                 </div>
 
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div>{{ $projects->created_at->format('d/m/Y') }}</div>
+                                <div>{{ $project->created_at->format('d/m/Y') }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq c63v7 ciamg c8o14">
                                 <div class="cisva flex items-center">
-                                    <a href="{{ route('users.show', $projects->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
+                                    <a href="{{ route('projects.show', $project->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
                                         <span class="cbl3h">Details</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3367d1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10" />
@@ -262,13 +268,13 @@
                                             <line x1="12" y1="8" x2="12" y2="8" />
                                         </svg>
                                     </a>
-                                    <a href="{{ route('users.edit', $projects->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
+                                    <a href="{{ route('projects.edit', $project->id)}}" class="rounded-full coyl7 cljes ciz4v czgoy mr-2">
                                         <span class="cbl3h">Edit</span>
                                         <svg class="c3wll chmgx c6dxj" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </a>
-                                    <form action="{{ route('users.destroy', $projects->id) }}" method="POST" class="rounded-full cvu65 c6tg6" onsubmit="return confirm('Are You sure You want To Delete This User?')">
+                                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="rounded-full cvu65 c6tg6" onsubmit="return confirm('Are You sure You want To Delete This User?')">
                                         @csrf
                                         @method('DELETE')
                                         <span class="cbl3h">Delete</span>

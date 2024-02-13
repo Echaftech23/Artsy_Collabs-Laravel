@@ -15,13 +15,24 @@ class Project extends Model
         'name', 'description', 'status', 'image', 'budget'
     ];
 
+    protected $attributes = [
+        'status' => 0,
+    ];
+
+    const  STATUS_RADIO = [
+        '0' => 'pending',
+        '1' => 'In Progress',
+        '2' => 'Completed',
+    ];
+
+
     public function partners()
     {
-        return $this->belongsTo(Partner::class, 'partner_project');
+        return $this->belongsToMany(Partner::class);
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'role_user');
+        return $this->belongsToMany(User::class);
     }
 }

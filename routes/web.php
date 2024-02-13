@@ -39,13 +39,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     })->name('dashboard');
 
     Route::controller(UserController::class)->prefix('users')->group(function () {
-        Route::get('', 'index')->name('admin.users');
-        Route::get('create', 'create')->name('admin.users.create');
-        Route::post('store', 'store')->name('admin.users.store');
-        Route::get('show/{id}', 'show')->name('admin.users.show');
-        Route::get('edit/{id}', 'edit')->name('admin.users.edit');
-        Route::put('edit/{id}', 'update')->name('admin.users.update');
-        Route::delete('destroy/{id}', 'destroy')->name('admin.users.destroy');
+        Route::get('', 'index')->name('users');
+        Route::get('create', 'create')->name('users.create');
+        Route::post('store', 'store')->name('users.store');
+        Route::get('show/{id}', 'show')->name('users.show');
+        Route::get('edit/{id}', 'edit')->name('users.edit');
+        Route::put('edit/{id}', 'update')->name('users.update');
+        Route::delete('destroy/{id}', 'destroy')->name('users.destroy');
     });
 
     Route::controller(ProjectController::class)->prefix('projects')->group(function () {
@@ -59,13 +59,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     Route::controller(PartnerController::class)->prefix('partners')->group(function () {
-        Route::get('', 'index')->name('admin.partners');
-        Route::get('create', 'create')->name('admin.partners.create');
-        Route::post('store', 'store')->name('admin.partners.store');
-        Route::get('show/{id}', 'show')->name('admin.partners.show');
-        Route::get('edit/{id}', 'edit')->name('admin.partners.edit');
-        Route::put('edit/{id}', 'update')->name('admin.partners.update');
-        Route::delete('destroy/{id}', 'destroy')->name('admin.partners.destroy');
+        Route::get('', 'index')->name('partners');
+        Route::get('create', 'create')->name('partners.create');
+        Route::post('store', 'store')->name('partners.store');
+        Route::get('show/{id}', 'show')->name('partners.show');
+        Route::get('edit/{id}', 'edit')->name('partners.edit');
+        Route::put('edit/{id}', 'update')->name('partners.update');
+        Route::delete('destroy/{id}', 'destroy')->name('partners.destroy');
     });
 
     Route::controller(RequestController::class)->prefix('requsets')->group(function () {
