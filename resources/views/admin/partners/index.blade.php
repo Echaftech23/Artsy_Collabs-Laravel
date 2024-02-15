@@ -195,10 +195,10 @@
                                 <div class="cefw2 cw92y"><img class="rounded-full chmgx c6dxj" src="{{ asset('img/group-avatar-04.png') }}" width="32" height="32" alt="User"></div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $partner->name }}</div>
+                                <div class="text-slate-800 dark:text-slate-100 cw92y">{{ Str::limit( $partner->name, 10) }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cw92y">{{ Str::limit($partner->expertise, 90) }}</div>
+                                <div class="cw92y">{{ Str::limit($partner->expertise, 70) }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
                                 <div>{{ $partner->created_at->format('d/m/Y') }}</div>

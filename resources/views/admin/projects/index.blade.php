@@ -234,7 +234,7 @@
                                 <div class="text-slate-800 dark:text-slate-100 cw92y">{{ $project->name }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
-                                <div class="cw92y">{{ Str::limit($project->description, 60) }}</div>
+                                <div class="cw92y">{{ Str::limit($project->description, 50) }}</div>
                             </td>
                             <td class="c626f ccr3m cwqwq ciamg c8o14">
                                 <div>{{ ($project->budget ? $project->budget : '-') }}</div>

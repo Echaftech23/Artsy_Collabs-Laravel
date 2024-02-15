@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,13 @@ class PartnerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    protected $model = Partner::class;
+
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->company,
+            'expertise' => $this->faker->paragraph,
         ];
     }
 }

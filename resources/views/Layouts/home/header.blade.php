@@ -1,5 +1,5 @@
 <header  class="bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100">
-    <div class="px-4 mx-auto sm:px-6 lg:px-8">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 relative">
         <div class="flex items-center justify-between h-16 lg:h-20">
             <div class="flex-shrink-0">
                 <a href="#" title="" class="flex">
@@ -26,7 +26,7 @@
 
                 <a href="#" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Resources </a>
 
-                <a href="#" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Pricing </a>
+                <a href="#" title="" class="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"> Blog </a>
 
                 <div class="w-px h-5 bg-black/20"></div>
 
@@ -73,18 +73,18 @@
                             </a>
                         </div>
                     </div>
-
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
-
                 @endif
 
             </div>
         </div>
+
         @if(Session::has('success'))
-            <div class="font-regular relative block mt-4 w-5/12 rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100">
-                {{ Session::get('success') }}
-            </div>
-         @endif
+            <x-notification type="success" :message="Session::get('success')" />
+        @endif
+
+        @if(Session::has('info'))
+            <x-notification type="info" :message="Session::get('info')" />
+        @endif
     </div>
 
 </header>

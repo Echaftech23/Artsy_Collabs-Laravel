@@ -27,9 +27,14 @@ class HomeController extends Controller
     {
         $project = Project::findOrFail($request->project_id);
 
-        $project->users()->attach(auth()->user()->id);
+        $userId = auth()->user()->id;
 
-        return redirect()->route('artists')->with('success', 'Your Request has been added successfully. Please wait for admin approval.');
+        if (!$project->users()->where('user_id', $userId)->exists()) {
+            $project->users()->attach($userId);
+            return redirect()->route('artists')->with('success', 'Your Request has been added successfully. Please wait for admin approval.');
+        } else {
+            return redirect()->route('artists')->with('info', 'You are already associated with this project.');
+        }
     }
 
     /**
