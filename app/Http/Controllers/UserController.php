@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegisterRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -31,7 +32,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRegisterRequest $request)
+    public function store(StoreUserRequest $request)
     {
 
         $user = User::create([

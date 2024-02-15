@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Artists\HomeController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RequestController;
@@ -19,9 +19,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('artists');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
@@ -35,7 +33,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboard', function () {
-        return view('welcome');
+        return view('admin.dashboard');
     })->name('dashboard');
 
     Route::controller(UserController::class)->prefix('users')->group(function () {
@@ -68,6 +66,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::delete('destroy/{id}', 'destroy')->name('partners.destroy');
     });
 
+
     Route::controller(RequestController::class)->prefix('requsets')->group(function () {
         Route::get('', 'index')->name('requsets');
         Route::get('create', 'create')->name('reservations.create');
@@ -81,11 +80,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 });
 
-Route::controller(HomeController::class)->prefix('views')->group(function () {
-    Route::get('', 'index')->name('views');
-    Route::get('create', 'create')->name('views.create');
-    Route::post('store', 'store')->name('views.store');
-    Route::get('show/{id}', 'show')->name('views.show');
-    Route::put('edit/{id}', 'update')->name('views.update');
-    Route::delete('destroy/{id}', 'destroy')->name('views.destroy');
+Route::middleware(['auth', 'artist'])->group(function () {
+
+    Route::controller(HomeController::class)->prefix('artists')->group(function () {
+        Route::get('', 'index')->name('artists');
+        Route::get('create', 'create')->name('artists.create');
+        Route::post('store', 'store')->name('artists.store');
+        Route::get('show/{id}', 'show')->name('artists.show');
+        Route::put('edit/{id}', 'update')->name('artists.update');
+        Route::delete('destroy/{id}', 'destroy')->name('artists.destroy');
+    });
 });

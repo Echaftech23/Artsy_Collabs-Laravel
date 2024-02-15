@@ -120,7 +120,7 @@
                         <!-- Panel footer -->
                         <footer class="flex border-slate-200 dark:border-slate-700 chmlm c87xd cdsqp c7s20">
                             <div class="flex c93ao">
-                                <button class="btn dark:bg-slate-800 border-slate-200 dark:border-slate-700 c46uo cm7vt ch1ih c6w4h">Cancel</button>
+                                <a href="{{route('users')}}" class="btn dark:bg-slate-800 border-slate-200 dark:border-slate-700 c46uo cm7vt ch1ih c6w4h">Cancel</a>
                                 <button class="btn ml-3 cfeqx cf1ce ceqwg" type="submit">Submit</button>
                             </div>
                         </footer>

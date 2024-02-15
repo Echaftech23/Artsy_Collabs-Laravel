@@ -144,13 +144,7 @@
                                 <!-- Email -->
                                 <div>
                                     <label class="block text-sm cw92y ci4cg" for="project-desc">Description</label>
-                                    <textarea name="description" id="project-desc"  class="c03gb c3ff8" rows="4" readonly>{{ $project->description }}</textarea>
-                                </div>
-                            </div>
-                            <!-- Form footer -->
-                            <div class="cro1p">
-                                <div class="c958j">
-                                    <button type="submit" class="btn cf1ce ceqwg c3ff8">Submit</button>
+                                    <p class="c03gb c3ff8">{{ $project->description }}</p>
                                 </div>
                             </div>
                         </div>

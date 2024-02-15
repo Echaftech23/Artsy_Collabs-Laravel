@@ -50,10 +50,10 @@ class AuthController extends Controller
         $user = Auth::user();
 
         // Check the user's role and redirect based on the role
-        if ($user && $user->roles->first()->name=== 'admin') {
+        if ($user && $user->roles->first()->name === 'admin') {
             return redirect()->route('dashboard');
-        } elseif ($user && $user->role->name === 'artist') {
-            return redirect('/views');
+        } elseif ($user && $user->roles->first()->name === 'artist') {
+            return redirect('artists');
         }
 
         return redirect('/login');

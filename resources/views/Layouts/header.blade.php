@@ -180,7 +180,7 @@
                                 <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="settings.html" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
                             </li>
                             <li>
-                                <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="{{ route('login') }}" @click="open = false" @focus="open = true" @focusout="open = false">Sign Out</a>
+                                <a class="text-sm text-indigo-500 flex items-center cuv1l cdi3j cw92y cjm6w cynm4" href="{{ route('logout') }}" @click="open = false" @focus="open = true" @focusout="open = false">Sign Out</a>
                             </li>
                         </ul>
                     </div>
